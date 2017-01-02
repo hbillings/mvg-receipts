@@ -101,7 +101,8 @@ def download(file):
     def convertToCsv(data):
         output = StringIO.StringIO()
         rows = [row.toDict() for row in data]
-        writer = csv.DictWriter(output, rows[0].keys())
+        fieldnames = ["deposit_id", "phone", "customer", "transaction_id", "date", "cash_account_id", "total", "prepayment", "num_of_distros", "invoice_paid", "gl_account_id", "gl_amount"]
+        writer = csv.DictWriter(output, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
         return output.getvalue()
