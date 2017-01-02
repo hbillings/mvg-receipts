@@ -95,7 +95,7 @@ def download(file):
                 })
                 data.append(new_receipt)
 
-        return convertToCsv(standardizeDate(data))
+        return convertToCsv(data)
 
 
     def convertToCsv(data):
@@ -109,7 +109,7 @@ def download(file):
 
     def standardizeDate(data):
         latest_date = data[-1].date
-        parsed_date = datetime.strptime(latest_date, "%d-%b-%Y %I:%M:%S %p %Z")
+        parsed_date = datetime.strptime(latest_date, "%d-%b-%Y %I:%M:%S %p %Z") # 30-Apr-2016 03:21:25 PM PDT
 
         """
         Create Date column equal to last entry's day, in format 04/17/16.
