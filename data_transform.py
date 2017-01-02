@@ -4,7 +4,7 @@ import StringIO
 import csv
 import os
 import re
-from datetime import datetime
+import dateparser
 from flask import Flask, request, render_template, make_response
 
 app = Flask(__name__)
@@ -95,7 +95,7 @@ def download(file):
                 })
                 data.append(new_receipt)
 
-        return convertToCsv(data)
+        return convertToCsv(standardizeDate(data))
 
 
     def convertToCsv(data):
@@ -109,7 +109,7 @@ def download(file):
 
     def standardizeDate(data):
         latest_date = data[-1].date
-        parsed_date = datetime.strptime(latest_date, "%d-%b-%Y %I:%M:%S %p %Z") # 30-Apr-2016 03:21:25 PM PDT
+        parsed_date = dateparser.parse(latest_date)
 
         """
         Create Date column equal to last entry's day, in format 04/17/16.
