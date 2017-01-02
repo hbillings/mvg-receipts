@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+      body { font-size: 16px; }
+      h1 { color: #199E64; }
+      .container { max-width: 630px; text-align: center; margin: auto; }
+      input[type="file"] { padding: 20px; background-color: #eee; }
+      button[type="submit"] { display: block; border-radius: 10px; padding: 10px 20px; font-size: 20px; background-color: #199E64; border: 0; margin: 20px auto; color: white; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if error_msg %}
+            {{ error_msg }}
+        {% endif %}
+        <h1>MVG receipts transformer</h1>
+        <hr />
+        <form method="POST" enctype="multipart/form-data">
+            <p>Upload your receipts <code>.txt</code> file to generate a CSV form:</p>
+            <input type="file" name="receipts" />
+            <button type="submit" name="submit_receipts">Get my CSV!</button>
+        </form>
+    </div>
+</body>
+</html>
